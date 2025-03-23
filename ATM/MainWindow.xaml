@@ -1,12 +1,23 @@
 ﻿<Window x:Class="Bank.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Bank"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="ATM" Height="400" Width="400">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Balance:" Margin="10"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Balance}" Margin="10"/>
+        <Button Grid.Row="1" Grid.Column="0" Content="Withdraw (TEST -500 EUR)" Margin="10" Click="Withdraw_Click"/>
+        <Button Grid.Row="2" Grid.Column="0" Content="Deposit (TEST +100 EUR)" Margin="10" Click="Deposit_Click"/>
     </Grid>
 </Window>
