@@ -26,9 +26,41 @@
 
         public bool Withdraw(int amount)
         {
-            return false;
+            var tempBanknotes = new List<Banknote>(Banknotes);
+            var sortedBanknotes = Banknotes.OrderByDescending(b => b.Denomination).ToList();
+
+            foreach (var banknote in sortedBanknotes)
+            {
+                if (amount >= banknote.Denomination && banknote.Count > 0)
+                {
+                    int required = Math.Min(amount / banknote.Denomination, banknote.Count);
+                    amount -= required * banknote.Denomination;
+                    banknote.Count -= required;
+                }
+            }
+
+            if (amount == 0)
+            {
+                return true;
+            }
+            else
+            {
+                Banknotes = tempBanknotes;
+                return false;
+            }
         }
 
-        public void Deposit(int denomination, int count) { }
+        public void Deposit(int denomination, int count)
+        {
+            var banknote = Banknotes.FirstOrDefault(b => b.Denomination == denomination);
+            if (banknote != null)
+            {
+                banknote.Count += count;
+            }
+            else
+            {
+                Banknotes.Add(new Banknote(denomination, count));
+            }
+        }
     }
 }
