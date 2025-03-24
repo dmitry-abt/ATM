@@ -10,13 +10,13 @@
             // test
             Banknotes = new List<Banknote>
             {
-                new Banknote(5, 0),
-                new Banknote(10, 0),
-                new Banknote(20, 0),
-                new Banknote(50, 0),
-                new Banknote(100, 0),
-                new Banknote(200, 0),
-                new Banknote(500, 0)
+                new Banknote(5, 10),
+                new Banknote(10, 10),
+                new Banknote(20, 10),
+                new Banknote(50, 10),
+                new Banknote(100, 10),
+                new Banknote(200, 10),
+                new Banknote(500, 10)
             };
         }
 
