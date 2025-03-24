@@ -41,7 +41,7 @@
             <RadioButton Name="SmallBillsRadio" Content="Small bills" Margin="5"/>
         </StackPanel>
 
-        <Button Grid.Row="4" Grid.Column="0" Content="Deposit (TEST +100 EUR)" Margin="10" Click="Deposit_Click"/>
+        <Button Grid.Row="4" Grid.Column="0" Content="Deposit" Margin="10" Click="Deposit_Click"/>
         <Button Grid.Row="5" Grid.Column="0" Content="Withdraw" Margin="10" Click="Withdraw_Click"/>
     </Grid>
 </Window>

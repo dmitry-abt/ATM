@@ -32,11 +32,24 @@ namespace Bank
 
         private void Deposit_Click(object sender, RoutedEventArgs e)
         {
-            // +100 EUR
-            bool success = viewModel.Deposit(100, 1);
-            if (!success)
+            if (int.TryParse(AmountTextBox.Text, out int amount))
             {
-                MessageBox.Show("The limit on the number of banknotes has been exceeded (MAX = 100)");
+                if (viewModel.Banknotes.FirstOrDefault(b => b.Denomination == amount) != null)
+                {
+                    bool success = viewModel.Deposit(amount, 1);
+                    if (!success)
+                    {
+                        MessageBox.Show("The limit on the number of banknotes has been exceeded (MAX = 100)");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("The banknote is not recognized, try another one");
+                }
+            }
+            else
+            {
+                MessageBox.Show("The banknote is not recognized, try another one");
             }
         }
     }
