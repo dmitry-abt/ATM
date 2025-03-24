@@ -36,7 +36,7 @@ namespace Bank
             bool success = viewModel.Deposit(100, 1);
             if (!success)
             {
-                MessageBox.Show("The limit on the number of banknotes has been exceeded");
+                MessageBox.Show("The limit on the number of banknotes has been exceeded (MAX = 100)");
             }
         }
     }
