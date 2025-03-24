@@ -3,6 +3,7 @@
     public class ATM
     {
         public List<Banknote> Banknotes { get; private set; }
+        private const int MaxBanknotesPerDenomination = 100;
 
         public ATM()
         {
@@ -24,10 +25,13 @@
             return Banknotes.Sum(b => b.Denomination * b.Count);
         }
 
-        public bool Withdraw(int amount)
+        public bool Withdraw(int amount, bool useLargeBills)
         {
-            var tempBanknotes = new List<Banknote>(Banknotes);
-            var sortedBanknotes = Banknotes.OrderByDescending(b => b.Denomination).ToList();
+            var sortedBanknotes = useLargeBills
+                ? Banknotes.OrderByDescending(b => b.Denomination).ToList()
+                : Banknotes.OrderBy(b => b.Denomination).ToList();
+
+            var tempBanknotes = new List<Banknote>(Banknotes.Select(b => new Banknote(b.Denomination, b.Count)));
 
             foreach (var banknote in sortedBanknotes)
             {
@@ -45,22 +49,31 @@
             }
             else
             {
-                Banknotes = tempBanknotes;
+                Banknotes = tempBanknotes; 
                 return false;
             }
         }
 
-        public void Deposit(int denomination, int count)
+        public bool Deposit(int denomination, int count)
         {
             var banknote = Banknotes.FirstOrDefault(b => b.Denomination == denomination);
             if (banknote != null)
             {
+                if (banknote.Count + count > MaxBanknotesPerDenomination)
+                {
+                    return false;
+                }
                 banknote.Count += count;
             }
             else
             {
+                if (count > MaxBanknotesPerDenomination)
+                {
+                    return false;
+                }
                 Banknotes.Add(new Banknote(denomination, count));
             }
+            return true;
         }
     }
 }

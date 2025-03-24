@@ -9,6 +9,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -17,7 +18,17 @@
 
         <TextBlock Grid.Row="0" Grid.Column="0" Text="Balance:" Margin="10"/>
         <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Balance}" Margin="10"/>
-        <Button Grid.Row="1" Grid.Column="0" Content="Withdraw (TEST -500 EUR)" Margin="10" Click="Withdraw_Click"/>
-        <Button Grid.Row="2" Grid.Column="0" Content="Deposit (TEST +100 EUR)" Margin="10" Click="Deposit_Click"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Amount:" Margin="10"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="AmountTextBox" Margin="10"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Сash withdrawal method:" Margin="10"/>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="10">
+            <RadioButton Name="LargeBillsRadio" Content="Large bills" Margin="5" IsChecked="True"/>
+            <RadioButton Name="SmallBillsRadio" Content="Small bills" Margin="5"/>
+        </StackPanel>
+
+        <Button Grid.Row="3" Grid.Column="0" Content="Deposit (TEST +100 EUR)" Margin="10" Click="Deposit_Click"/>
+        <Button Grid.Row="4" Grid.Column="0" Content="Withdraw" Margin="10" Click="Withdraw_Click"/>
     </Grid>
 </Window>

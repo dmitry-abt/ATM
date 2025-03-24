@@ -15,16 +15,17 @@ namespace Bank
 
         public List<Banknote> Banknotes => atm.Banknotes;
 
-        public void Deposit(int denomination, int count)
+        public bool Deposit(int denomination, int count)
         {
-            atm.Deposit(denomination, count);
+            bool result = atm.Deposit(denomination, count);
             OnPropertyChanged(nameof(Balance));
             OnPropertyChanged(nameof(Banknotes));
+            return result;
         }
 
-        public bool Withdraw(int amount)
+        public bool Withdraw(int amount, bool useLargeBills)
         {
-            bool result = atm.Withdraw(amount);
+            bool result = atm.Withdraw(amount, useLargeBills);
             OnPropertyChanged(nameof(Balance));
             OnPropertyChanged(nameof(Banknotes));
             return result;
